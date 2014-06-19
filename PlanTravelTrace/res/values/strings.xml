@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<resources>
+
+    <string name="app_name">三步游</string>
+    <string name="LaunchActivity_name">跟着程序员去旅行  :)</string>
+    <string name="record_activity_name">记下你的回忆哦  :)</string>
+    <string name="DestDetailActivity_name">这个地方怎么样呢  :)</string>
+    <string name="DestSelectActivity_name">挑选好了去旅行吧  :)</string>
+    <string name="PlanShowActivity_name">跟着我走不会迷路哦  :)</string>
+    <string name="DetailsActivity_name">这是过往的曾经  :)</string>
+    <string name="TextContentActivity_name">留下你的碎碎念  :)</string>
+    <string name="ShowActivity_name">你的足迹全都在这里哦  :)</string>
+
+</resources>

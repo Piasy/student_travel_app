@@ -1,0 +1,14 @@
+#Fat Jar Configuration File
+#Sat Feb 01 07:54:26 CST 2014
+onejar.license.required=false
+manifest.classpath=
+manifest.removesigners=true
+onejar.checkbox=true
+jarname=StudentTravelAppServer.jar
+manifest.mergeall=true
+manifest.mainclass=driver.Driver
+manifest.file=<createnew>
+jarname.isextern=false
+onejar.expand=
+excludes=
+includes=

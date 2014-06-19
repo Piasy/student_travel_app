@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:background="#9dcd82"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/addToPlanButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/add_to_style" />
+
+        <TextView
+            android:id="@+id/titleInSpotDetail"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="0.2"
+            android:gravity="center"
+            android:textSize="17sp" 
+            android:textColor="#ffffff"
+            android:text="大唐芙蓉园" />
+        
+        <Button
+            android:id="@+id/evalOperation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/eval_ops_style"/>
+
+    </LinearLayout>
+    
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <ImageView
+                android:id="@+id/spotImageInSpotDetail"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:src="@drawable/dushafuren" />
+
+            <LinearLayout
+                android:id="@+id/citynameLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+		            android:layout_marginLeft="38dip"
+		            android:layout_marginRight="7dip"
+		            android:layout_marginTop="15dip"
+                    android:src="@drawable/citi_intro" />
+
+                <TextView
+                    android:id="@+id/spotNameInSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:text="城市：" />
+
+                <TextView
+                    android:id="@+id/cityNameInSpotDetail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+		            android:layout_marginRight="31dip"
+                    android:text="西安" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/introLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/spotNameInSearch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="14dip"
+		            android:layout_marginLeft="67dip"
+                    android:text="简介：" />
+
+                <TextView
+                    android:id="@+id/introInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginLeft="67dip"
+		            android:layout_marginRight="31dip"
+                    android:text="      位于古都西安大雁塔之侧，是中国第一个全方位展示盛唐风貌的大型皇家园林式文化主题公园..." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/addressLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/position" />
+                
+                <TextView
+                    android:id="@+id/addressInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="31dip"
+                    android:layout_marginTop="13dip"
+                    android:text="地址：西安市曲江新区芙蓉西路99号" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ticketLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dip"
+                        android:layout_marginLeft="38dip"
+                        android:layout_marginRight="7dip"
+                        android:layout_marginTop="15dip"
+                        android:src="@drawable/ticket" />
+
+                    <TextView
+                        android:id="@+id/priceInSpotDetail"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="31dip"
+                        android:layout_marginTop="13dip"
+                        android:gravity="left"
+                        android:text="门票：1. 旺季（4月1日~10月31日）：15.00元 联票（含门票、熊猫馆）：20.00元 2. 淡季（11月1日~3月31日）：10.00元 联票（含门票、熊猫馆）：15.00元  " />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/favorInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="67dip"
+                    android:layout_marginRight="31dip"
+                    android:text="优惠信息：身高1.2米以下（含1.2米）儿童免票；身高1.2~1.5米儿童，门票半价优惠。" />
+
+            </LinearLayout>
+			
+			<LinearLayout
+                android:id="@+id/openSuggLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <LinearLayout
+					android:id="@+id/opentimeLayoutInSpotDetail"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <ImageView
+                        android:id="@+id/imageView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dip"
+                        android:layout_marginLeft="38dip"
+                        android:layout_marginRight="7dip"
+                        android:layout_marginTop="15dip"
+                        android:src="@drawable/opentime" />
+
+                    <TextView
+                        android:id="@+id/opentimeInSpotDetail"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginRight="31dip"
+                        android:layout_marginTop="13dip"
+                        android:text="开放时间：旺季（4月1日~10月31日）：07:30~18:00\n淡季（11月1日~3月31日）：07:30~17:00" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/suggesttimeInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="67dip"
+                    android:layout_marginRight="31dip"
+                    android:text="建议游玩时间：3小时" />
+
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/besttimeLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/best_time" />
+                
+                <TextView
+                    android:id="@+id/besttimeInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginRight="31dip"
+                    android:text="最佳旅游季节：一年四季是都适宜的，但是结合西安的天气条件春秋..." />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/activityLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/activity" />
+                
+                <TextView
+                    android:id="@+id/activityInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginRight="31dip"
+                    android:text="活动：演出信息 凤鸣九天剧院的《梦回大唐》演出时间为：17:00-18:10，门..." />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/foodLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/food" />
+                
+                <TextView
+                    android:id="@+id/foodInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginRight="31dip"
+                    android:text="美食：西安坊上人擅长小吃制作，他们较完整地保留了..." />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/shoppingLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/shopping" />
+                
+                <TextView
+                    android:id="@+id/shoppingInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginRight="31dip"
+                    android:text="购物：回民街内有很多家店铺经营工艺品生意，有制做皮影的..." />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/cultrueLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/culture" />
+                
+                <TextView
+                    android:id="@+id/cultureInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginRight="31dip"
+                    android:text="文化地理：历史 回民街位于鼓楼北侧，唐代属皇城范围，尚书省即位于此地..." />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/tipLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/tip_in_detail" />
+                
+                <TextView
+                    android:id="@+id/tipInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginRight="31dip"
+                    android:text="小贴士：注意事项 由于这条街属于回民聚居区，在这里吃东西是有一些禁忌的。比如不吃大肉..." />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/trafficLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/traffic_in_detail" />
+                
+                <TextView
+                    android:id="@+id/trafficInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginRight="31dip"
+                    android:text="交通信息：公交 乘坐公交5、19、21、22、24、27、30、34、41、44..." />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/phoneLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="3dip"
+                    android:layout_marginLeft="38dip"
+                    android:layout_marginRight="7dip"
+                    android:layout_marginTop="15dip"
+                    android:src="@drawable/phone" />
+                
+                <TextView
+                    android:id="@+id/phoneInSpotDetail"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="31dip"
+                    android:layout_marginTop="13dip"
+                    android:text="电话：029-85511888" />
+            </LinearLayout>
+            
+            <LinearLayout
+                android:id="@+id/commitLayoutInSpotDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/commitScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+		            android:layout_marginTop="13dip"
+		            android:layout_marginLeft="67dip"
+                    android:text="评分：暂无" />
+
+                <TextView
+                    android:id="@+id/commitContent"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+		            android:layout_marginLeft="67dip"
+		            android:layout_marginRight="31dip"
+		            android:layout_marginTop="13dip"
+                    android:layout_marginBottom="10dip"
+                    android:text="评价：暂无" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:background="#231815"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/travelInfoInSpotDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/travel_info_style" />
+        
+        
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="0.2"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/planTableInSpotDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/plan_table_button_style" />
+        
+        
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="0.2"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/SettingInSpotDetail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/setting_style" />
+
+    </LinearLayout>
+</LinearLayout>

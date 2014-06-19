@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+	<ImageView
+        android:id="@+id/hotelImageInSearch"
+        android:layout_width="fill_parent"
+        android:layout_height="106dip"
+        android:scaleType="fitXY"
+        android:layout_marginTop="5dip"
+        android:layout_marginLeft="12dip"
+        android:layout_marginRight="12dip"
+        android:src="@drawable/su8_hotel" />
+
+	<TextView
+	    android:id="@+id/hotelNameInSearch"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+        android:layout_marginLeft="12dip" 
+        android:layout_marginRight="12dip"
+	    android:text="7天连锁酒店北京良乡大学城南关地铁站店"
+	    android:textSize="20sp" />
+
+	<TextView
+	    android:id="@+id/hotelAddressInSearch"
+	    android:layout_width="wrap_content"
+	    android:layout_height="wrap_content"
+        android:layout_marginLeft="12dip" 
+        android:layout_marginRight="12dip"
+	    android:text="地址：西安市莲湖路劳武巷1号"
+	    android:textColor="#727171" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.3"
+        android:layout_marginTop="5dip"
+        android:layout_marginRight="12dip"
+        android:layout_marginLeft="12dip" >
+
+        <LinearLayout
+            android:layout_width="93dip"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+        	android:layout_marginRight="6dip" >
+
+            <TextView
+                android:id="@+id/hotelCityInSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:text="城市：西安"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/hotelScoreLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" >
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+            		android:layout_marginRight="6dip"
+                    android:src="@drawable/eval_icon" />
+
+                <TextView
+                    android:id="@+id/hotelScore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+            		android:layout_marginTop="1dip"
+            		android:textColor="#727171"
+                    android:text="4.5分" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/hotelPriceLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/imageView1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+            		android:layout_marginRight="6dip"
+            		android:layout_marginLeft="2dip"
+                    android:src="@drawable/money_icon" />
+
+                <TextView
+                    android:id="@+id/hotelMoney"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+            		android:layout_marginTop="1dip"
+            		android:textColor="#727171"
+                    android:text="223元起" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="6dip"
+            android:layout_weight="0.7"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/hotelIntroInSearch"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+           		android:textColor="#727171"
+                android:text="      位于西安市莲湖路劳武巷1号，毗邻钟鼓楼广场，西安小吃一条街。" />
+
+        </LinearLayout>
+
+<!--         <Button -->
+<!--             android:id="@+id/hotelAroundButton" -->
+<!--             android:layout_width="wrap_content" -->
+<!--             android:layout_height="wrap_content" -->
+<!--             android:layout_gravity="bottom" -->
+<!--             android:background="@drawable/hotel_around" -->
+<!--             android:focusable="false" /> -->
+
+    </LinearLayout>    
+
+</LinearLayout>

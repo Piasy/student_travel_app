@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:background="#9dcd82"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/searchType"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="13dip"
+            android:layout_marginRight="3dip"
+            android:background="@drawable/search_spot_style" />
+
+        <EditText
+            android:id="@+id/keyword"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="3dip"
+            android:layout_marginTop="3dip"
+            android:layout_weight="0.23"
+            android:ems="10"
+            android:visibility="invisible"
+            android:hint="景点关键词" />
+
+        <Button
+            android:id="@+id/searchButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="invisible"
+            android:background="@drawable/search_style" />
+
+        <Button
+            android:id="@+id/sortTypeButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dip"
+        	android:visibility="gone"
+            android:background="@drawable/sort_type_hide" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/sortTypeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="27dip"
+        android:background="#000000"
+        android:gravity="right"
+        android:visibility="gone"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/sortByPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dip"
+            android:background="@drawable/sort_by_price_style" />
+
+        <Button
+            android:id="@+id/sortByEval"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="27dip"
+            android:layout_marginRight="27dip"
+            android:background="@drawable/sort_by_eval_style" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.2"
+        android:orientation="vertical" >
+        
+    	<com.piasy.plantraveltrace.ScrollRefreshListView  
+        	android:id="@+id/searchResultListView"  
+        	android:layout_width="fill_parent"  
+        	android:layout_height="fill_parent" />  
+        
+<!--         <ListView -->
+<!--             android:id="@+id/searchResultListView" -->
+<!--             android:layout_width="match_parent" -->
+<!--             android:layout_height="wrap_content" > -->
+<!--         </ListView> -->
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="48dip"
+        android:background="#231815"
+        android:gravity="center_vertical"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/travelInfoInSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/travel_info_style" />
+        
+        
+        <Button
+            android:id="@+id/button7"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="0.2"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/planTableInSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/plan_table_button_style" />
+        
+        
+        <Button
+            android:id="@+id/button8"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:layout_weight="0.2"
+            android:text="Button"
+            android:visibility="invisible" />
+
+        <Button
+            android:id="@+id/SettingInSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dip"
+            android:layout_marginRight="10dip"
+            android:background="@drawable/setting_style" />
+    </LinearLayout>
+
+</LinearLayout>

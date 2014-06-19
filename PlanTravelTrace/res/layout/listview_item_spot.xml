@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spotDetailLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <ImageView
+            android:id="@+id/spotImage"
+            android:layout_width="110dip"
+            android:layout_height="85dip"
+            android:layout_marginBottom="3dip"
+            android:layout_marginLeft="7dip"
+            android:layout_marginRight="3dip"
+            android:layout_marginTop="10dip"
+            android:scaleType="centerCrop"
+            android:src="@drawable/dushafuren" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/spotName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="大唐芙蓉园"
+            android:textSize="20sp" 
+            android:layout_marginTop="5dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginBottom="2dip"/>
+
+        <TextView
+            android:id="@+id/spotIntro"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="      位于古都西安大雁塔之侧，是中国第一个全方位展示盛唐风貌的大型皇家园林式文化主题公园..."
+            android:layout_marginTop="2dip"
+            android:layout_marginLeft="5dip"
+            android:layout_marginRight="5dip"
+            android:layout_marginBottom="5dip"/>
+
+    </LinearLayout>
+
+</LinearLayout>
