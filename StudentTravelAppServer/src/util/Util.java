@@ -4,19 +4,24 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.security.InvalidKeyException;
 import java.security.KeyFactory;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
+import java.security.SecureRandom;
 import java.security.spec.InvalidKeySpecException;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Random;
 
@@ -33,15 +38,87 @@ import sun.misc.BASE64Decoder;
 
 public class Util
 {
+//	public static void main(String[] args)
+//	{
+//		genKey();
+//	}
+	
 	static PrintStream out;
 	static int level;
+	static MessageDigest SHA = null;
+	static PrivateKey privateKey;
+	//initialize the SHA algorithm instance
 	public static void init(PrintStream output, int l)
 	{
 		out = output;
 		level = l;
+		
+		try 
+        {
+        	SHA = MessageDigest.getInstance("SHA");
+        	
+			File kprFile = new File(System.getProperty("user.dir") + "/id_rsa");
+			DataInputStream dis = new DataInputStream(new FileInputStream(kprFile));
+			byte[] keyBytes = new byte[(int)kprFile.length()];
+			dis.readFully(keyBytes);
+			dis.close();
+			PKCS8EncodedKeySpec spec =new PKCS8EncodedKeySpec(keyBytes);
+			KeyFactory kf = KeyFactory.getInstance("RSA");
+			privateKey = kf.generatePrivate(spec);
+			
+        } 
+        catch (NoSuchAlgorithmException e) 
+        {
+        	Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
+        }
+        catch (InvalidKeySpecException e) 
+        {
+        	Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
+        }
+		catch (FileNotFoundException e)
+		{
+			Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
+		}
+		catch (IOException e)
+		{
+			Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
+		}
 	}
 	
-	protected static int getLevel(String sl)
+	protected static void genKey()
+	{
+		try
+		{
+			KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+	        SecureRandom secureRandom = new SecureRandom(new Date().toString().getBytes());
+	        keyPairGenerator.initialize(1024, secureRandom);
+	        KeyPair keyPair = keyPairGenerator.genKeyPair();
+	        String publicKeyFilename = "id_rsa.pub";
+	        byte[] publicKeyBytes = keyPair.getPublic().getEncoded();
+	        FileOutputStream fos = new FileOutputStream(publicKeyFilename); 
+	        fos.write(publicKeyBytes); 
+	        fos.close();
+	        String privateKeyFilename = "id_rsa"; 
+	        byte[] privateKeyBytes = keyPair.getPrivate().getEncoded();
+	        fos = new FileOutputStream(privateKeyFilename); 
+	        fos.write(privateKeyBytes); 
+	        fos.close();
+		}
+		catch (NoSuchAlgorithmException e)
+		{
+			e.printStackTrace();
+		}
+		catch (FileNotFoundException e)
+		{
+			e.printStackTrace();
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		} 
+	}
+	
+	protected synchronized static int getLevel(String sl)
 	{
 		if (sl.equals(Constant.LOG_LEVEL_INFO))
 		{
@@ -70,7 +147,7 @@ public class Util
 	}
 	
 	
-	public static void Log(String sl, String message, String callee)
+	public synchronized static void Log(String sl, String message, String callee)
 	{
 		if (level <= getLevel(sl))
 		{
@@ -80,7 +157,7 @@ public class Util
 		}
 	}
 	
-	public static HashMap<String, String> getParams(String data)
+	public synchronized static HashMap<String, String> getParams(String data)
 	{
 		HashMap<String, String> params = new HashMap<String, String>();
 		try
@@ -99,7 +176,7 @@ public class Util
 		return params;
 	}
 	
-	public static String genToken()
+	public synchronized static String genToken()
 	{
 		String charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 		Random rand = new Random();
@@ -112,43 +189,7 @@ public class Util
 		return buf.toString();
 	}
 	
-	static MessageDigest SHA = null;
-	static PrivateKey privateKey;
-	//initialize the SHA algorithm instance
-    static 
-    {
-        try 
-        {
-        	SHA = MessageDigest.getInstance("SHA");
-        	
-			File kprFile = new File(System.getProperty("user.dir") + "/id_rsa");
-			DataInputStream dis = new DataInputStream(new FileInputStream(kprFile));
-			byte[] keyBytes = new byte[(int)kprFile.length()];
-			dis.readFully(keyBytes);
-			dis.close();
-			PKCS8EncodedKeySpec spec =new PKCS8EncodedKeySpec(keyBytes);
-			KeyFactory kf = KeyFactory.getInstance("RSA");
-			privateKey = kf.generatePrivate(spec);        	
-        } 
-        catch (NoSuchAlgorithmException e) 
-        {
-        	Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
-        }
-        catch (InvalidKeySpecException e) 
-        {
-        	Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
-        }
-		catch (FileNotFoundException e)
-		{
-			Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
-		}
-		catch (IOException e)
-		{
-			Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "Util Hash init");
-		}
-    }
-	
-	public static String getSHA1Value(String data)
+	public synchronized static String getSHA1Value(String data)
 	{
 		SHA.reset();
 		SHA.update(data.getBytes());
@@ -156,7 +197,7 @@ public class Util
 		return encrypt;
 	}
 	
-	public static String RSADecrypt(String crypt)
+	public synchronized static String RSADecrypt(String crypt)
 	{
 		String decrypt = null;
 		try

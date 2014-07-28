@@ -82,7 +82,7 @@
         android:layout_weight="0.2"
         android:orientation="vertical" >
         
-    	<com.piasy.plantraveltrace.ScrollRefreshListView  
+    	<com.piasy.simpletravel.ScrollRefreshListView  
         	android:id="@+id/searchResultListView"  
         	android:layout_width="fill_parent"  
         	android:layout_height="fill_parent" />  

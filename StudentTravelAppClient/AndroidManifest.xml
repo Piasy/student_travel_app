@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.piasy.plantraveltrace"
+    package="com.piasy.simpletravel"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -51,13 +51,13 @@
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
     
     <application
-        android:name="com.piasy.plantraveltrace.PlanTravelTraceApplication"
+        android:name="com.piasy.simpletravel.SimpleTravelApplication"
         android:allowBackup = "true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
            
         <activity
-            android:name="com.piasy.plantraveltrace.LaunchActivity"
+            android:name="com.piasy.simpletravel.LaunchActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
             <intent-filter>
@@ -68,49 +68,49 @@
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.MapViewActivity"
+            android:name="com.piasy.simpletravel.MapViewActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.SettingActivity"
+            android:name="com.piasy.simpletravel.SettingActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.SignupActivity"
+            android:name="com.piasy.simpletravel.SignupActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.AllPlanActivity"
+            android:name="com.piasy.simpletravel.AllPlanActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.SearchActivity"
+            android:name="com.piasy.simpletravel.SearchActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.SpotDetailActivity"
+            android:name="com.piasy.simpletravel.SpotDetailActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.HotelDetailActivity"
+            android:name="com.piasy.simpletravel.HotelDetailActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
         
         <activity
-            android:name="com.piasy.plantraveltrace.SingledayPlanActivity"
+            android:name="com.piasy.simpletravel.SingledayPlanActivity"
             android:label="@string/app_name" 
             android:theme="@android:style/Theme.Light.NoTitleBar">
         </activity>
