@@ -8,18 +8,6 @@ http://www.zhihu.com/question/20741504
 http://developer.android.com/reference/android/webkit/WebViewClient.html#onPageFinished(android.webkit.WebView,%20java.lang.String)
 http://developer.android.com/reference/android/webkit/WebView.html#addJavascriptInterface(java.lang.Object,%20java.lang.String)
 
-
-
-
-
-
-
-
-
-
-
-
-
 To do:
 
 pre-alpha, 20:55 2013/11/3-星期日:

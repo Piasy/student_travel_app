@@ -1,0 +1,9 @@
+StudentTravelAppClient/bin/*
+StudentTravelAppClient/gen/*
+StudentTravelAppClient/assets/id_rsa.pub
+
+SpotsParser/bin/*
+SpotsParser/docs/*
+
+StudentTravelAppServer/bin/*
+StudentTravelAppServer/id_rsa
