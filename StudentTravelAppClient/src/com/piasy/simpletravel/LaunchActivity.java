@@ -28,9 +28,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.baidu.location.LocationClient;
-import com.baidu.mapapi.BMapManager;
-import com.baidu.mapapi.MKGeneralListener;
-import com.baidu.mapapi.map.MKEvent;
+//import com.baidu.mapapi.BMapManager;
+//import com.baidu.mapapi.MKGeneralListener;
+//import com.baidu.mapapi.map.MKEvent;
 import com.piasy.simpletravel.controller.Controller;
 import com.piasy.simpletravel.dao.DBManager;
 import com.piasy.simpletravel.model.Constant;
@@ -39,7 +39,7 @@ import com.piasy.simpletravel.util.Util;
 
 public class LaunchActivity extends Activity
 {
-    BMapManager mBMapManager = null;
+//    BMapManager mBMapManager = null;
     public LocationClient locationClient = null;
     DBManager dbManager;
     Controller myController;
@@ -81,12 +81,12 @@ public class LaunchActivity extends Activity
 
 			    if (Util.init(is))
 			    {
-			    	myController.getApp().setBMapManager(mBMapManager);
+//			    	myController.getApp().setBMapManager(mBMapManager);
 					DBManager dbManager = new DBManager(getApplicationContext());
 					myController.setDBManager(dbManager);
-					myController.setBMapManager(mBMapManager);
+//					myController.setBMapManager(mBMapManager);
 					myController.setActivityHandler(handler);
-					myController.setLocationClient(locationClient);
+//					myController.setLocationClient(locationClient);
 					
 					myController.setActivityHandler(handler);
 					
@@ -137,61 +137,62 @@ public class LaunchActivity extends Activity
 	public boolean initEngineManager(Context context) 
 	{
 		boolean ret = false;
-        if (mBMapManager == null) 
-        {
-        	mBMapManager = new BMapManager(context);
-        }
-        
-        if (locationClient == null)
-        {
-        	locationClient = new LocationClient(this);
-        }
-
-        if (!mBMapManager.init(Setting.APPKEY, new MyGeneralListener())) 
-        {
-        	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), 
-                    "BMapManager  初始化错误!", Toast.LENGTH_LONG).show();
-        }
-        else
-        {
-			ret = true;
-		}
+		ret = true;
+//        if (mBMapManager == null) 
+//        {
+//        	mBMapManager = new BMapManager(context);
+//        }
+//        
+//        if (locationClient == null)
+//        {
+//        	locationClient = new LocationClient(this);
+//        }
+//
+//        if (!mBMapManager.init(Setting.APPKEY, new MyGeneralListener())) 
+//        {
+//        	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), 
+//                    "BMapManager  初始化错误!", Toast.LENGTH_LONG).show();
+//        }
+//        else
+//        {
+//			ret = true;
+//		}
         
         return ret;
 	}
 	
 	// normal exception listener, such as auth error, network error
-    public static class MyGeneralListener implements MKGeneralListener 
-    {
-        
-        @Override
-        public void onGetNetworkState(int iError) 
-        {
-            if (iError == MKEvent.ERROR_NETWORK_CONNECT) 
-            {
-            	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), "你的网络出错啦！",
-                        Toast.LENGTH_LONG).show();
-            }
-            else if (iError == MKEvent.ERROR_NETWORK_DATA) 
-            {
-            	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), "输入正确的检索条件！",
-                        Toast.LENGTH_LONG).show();
-            }
-            // ...
-        }
-
-        @Override
-        public void onGetPermissionState(int iError)
-        {
-            if (iError ==  MKEvent.ERROR_PERMISSION_DENIED) 
-            {
-                //auth Key error
-                Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), 
-                        "授权错误，请从合法途径获取本软件！", Toast.LENGTH_LONG).show();
-                SimpleTravelApplication.getInstance().m_bKeyRight = false;
-            }
-        }
-    }
+//    public static class MyGeneralListener implements MKGeneralListener 
+//    {
+//        
+//        @Override
+//        public void onGetNetworkState(int iError) 
+//        {
+//            if (iError == MKEvent.ERROR_NETWORK_CONNECT) 
+//            {
+//            	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), "你的网络出错啦！",
+//                        Toast.LENGTH_LONG).show();
+//            }
+//            else if (iError == MKEvent.ERROR_NETWORK_DATA) 
+//            {
+//            	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), "输入正确的检索条件！",
+//                        Toast.LENGTH_LONG).show();
+//            }
+//            // ...
+//        }
+//
+//        @Override
+//        public void onGetPermissionState(int iError)
+//        {
+//            if (iError ==  MKEvent.ERROR_PERMISSION_DENIED) 
+//            {
+//                //auth Key error
+//                Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), 
+//                        "授权错误，请从合法途径获取本软件！", Toast.LENGTH_LONG).show();
+//                SimpleTravelApplication.getInstance().m_bKeyRight = false;
+//            }
+//        }
+//    }
 	
 	
 	
@@ -250,6 +251,9 @@ public class LaunchActivity extends Activity
 				username = usernameEdit.getText().toString();
 				password = passwordEdit.getText().toString();
 				
+				//salt hash
+				password = Util.getSHA1Value(Util.getSHA1Value(username) + Util.getSHA1Value(password));
+				
 				verify();
 			}
 		});
@@ -292,6 +296,7 @@ public class LaunchActivity extends Activity
 	
 	protected void verify()
 	{
+		System.out.println("verify input: " + password);
 		myController.verify(username, password);
 						
 		dialog = new ProgressDialog(LaunchActivity.this);

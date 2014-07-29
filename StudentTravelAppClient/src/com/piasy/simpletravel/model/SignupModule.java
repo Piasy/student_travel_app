@@ -63,7 +63,7 @@ public class SignupModule
 				List<BasicNameValuePair> params = new LinkedList<BasicNameValuePair>();
 				params.add(new BasicNameValuePair("username", username));  
 				params.add(new BasicNameValuePair("password", 
-						Util.RSAEncrypt(Util.getSHA1Value(password)))); 
+						Util.RSAEncrypt(password))); 
 				params.add(new BasicNameValuePair("info", info.toString()));
 				post.setEntity(new UrlEncodedFormEntity(params, "utf-8"));
 				HttpResponse response = client.execute(host, post);

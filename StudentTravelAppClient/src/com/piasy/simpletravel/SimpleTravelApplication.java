@@ -7,7 +7,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.baidu.mapapi.BMapManager;
+//import com.baidu.mapapi.BMapManager;
 import com.piasy.simpletravel.controller.Controller;
 import com.piasy.simpletravel.model.Constant;
 
@@ -15,7 +15,7 @@ public class SimpleTravelApplication extends Application
 {
     private static SimpleTravelApplication mInstance = null;
     public boolean m_bKeyRight = true;
-    public BMapManager mBMapManager = null;
+//    public BMapManager mBMapManager = null;
     
 	@SuppressLint("HandlerLeak")
 	@Override
@@ -38,10 +38,10 @@ public class SimpleTravelApplication extends Application
 		myController.setActivityHandler(handler);
 	}
 	
-	public void setBMapManager(BMapManager mBMapManager)
-	{
-		this.mBMapManager = mBMapManager;		
-	}
+//	public void setBMapManager(BMapManager mBMapManager)
+//	{
+//		this.mBMapManager = mBMapManager;		
+//	}
 
 	public static SimpleTravelApplication getInstance() 
 	{

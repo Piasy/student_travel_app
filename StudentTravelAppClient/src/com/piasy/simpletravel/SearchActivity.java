@@ -478,14 +478,14 @@ public class SearchActivity extends Activity
 								try
 								{
 									JSONObject spot = spots.getJSONObject(longClickPos);
-									if (myController.addSpot(spot))
-									{
-										Controller.makeToast("添加成功");
-									}
-									else
-									{
-										Controller.makeToast("已经在行程中啦");
-									}
+//									if (myController.addSpot(spot))
+//									{
+//										Controller.makeToast("添加成功");
+//									}
+//									else
+//									{
+//										Controller.makeToast("已经在行程中啦");
+//									}
 								}
 								catch (JSONException e)
 								{
@@ -504,14 +504,14 @@ public class SearchActivity extends Activity
 					{
 						spot = spots.getJSONObject(longClickPos);
 					}
-					if (myController.addSpot(spot))
-					{
-						Controller.makeToast("添加成功");
-					}
-					else
-					{
-						Controller.makeToast("已经在行程中啦");
-					}
+//					if (myController.addSpot(spot))
+//					{
+//						Controller.makeToast("添加成功");
+//					}
+//					else
+//					{
+//						Controller.makeToast("已经在行程中啦");
+//					}
 				}
 				break;
 			default:

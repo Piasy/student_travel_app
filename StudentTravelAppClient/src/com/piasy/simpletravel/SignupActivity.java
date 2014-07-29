@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import com.piasy.simpletravel.controller.Controller;
 import com.piasy.simpletravel.model.Constant;
+import com.piasy.simpletravel.util.Util;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -76,6 +77,8 @@ public class SignupActivity extends Activity
 					e.printStackTrace();
 				}
 				
+				//salt hash
+				password = Util.getSHA1Value(Util.getSHA1Value(mail) + Util.getSHA1Value(password));
 				myController.signup(mail, password, info);
 				
 				dialog = new ProgressDialog(SignupActivity.this);

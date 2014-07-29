@@ -20,7 +20,7 @@ import android.util.Log;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.LocationClient;
-import com.baidu.mapapi.BMapManager;
+//import com.baidu.mapapi.BMapManager;
 import com.piasy.simpletravel.SimpleTravelApplication;
 import com.piasy.simpletravel.dao.DBManager;
 import com.piasy.simpletravel.model.CommitModule;
@@ -240,19 +240,19 @@ public class Controller
 		aroundSpots = spots;
 	}
 
-	public void searchAroundSpots()
-	{
-		BDLocation location = getLocation();
-		if (location != null && aroundSpots.length() == 0 
-				&& !username.equals("") && !token.equals(""))
-		{
-			String city = location.getCity();
-			System.out.println("city0 : " + city);
-			city = city.substring(0, city.length() - 1);
-			System.out.println("city1 : " + city);
-			spotsSeacher.search(username, token, city, Constant.SEARCH_BY_CITY, 0);
-		}
-	}
+//	public void searchAroundSpots()
+//	{
+//		BDLocation location = getLocation();
+//		if (location != null && aroundSpots.length() == 0 
+//				&& !username.equals("") && !token.equals(""))
+//		{
+//			String city = location.getCity();
+//			System.out.println("city0 : " + city);
+//			city = city.substring(0, city.length() - 1);
+//			System.out.println("city1 : " + city);
+//			spotsSeacher.search(username, token, city, Constant.SEARCH_BY_CITY, 0);
+//		}
+//	}
 	
 	public ArrayList<JSONObject> getAroundSpots()
 	{
@@ -684,119 +684,119 @@ public class Controller
 		return exiting;
 	}
 		
-	BMapManager bMapManager;
-	public void setBMapManager(BMapManager bMapManager)
-	{
-		this.bMapManager = bMapManager;
-		planGenerator = new PlanGenerator(bMapManager);
-	}
+//	BMapManager bMapManager;
+//	public void setBMapManager(BMapManager bMapManager)
+//	{
+//		this.bMapManager = bMapManager;
+//		planGenerator = new PlanGenerator(bMapManager);
+//	}
 	
 	PlanGenerator planGenerator;
-	public boolean addSpot(JSONObject spot)
-	{
-		//TODO make sure all spots are in one city,
-		//and divide them into proper days
-		
-		try
-		{
-			toCity = spot.getString("city");
-		}
-		catch (JSONException e)
-		{
-			if (e.getMessage() == null)
-        	{
-        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller addSpot : JSONException");
-        	}
-        	else
-        	{
-        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller addSpot : " + e.getMessage());
-			}
-		}
-		return planGenerator.addSpot(spot);
-	}
+//	public boolean addSpot(JSONObject spot)
+//	{
+//		//TODO make sure all spots are in one city,
+//		//and divide them into proper days
+//		
+//		try
+//		{
+//			toCity = spot.getString("city");
+//		}
+//		catch (JSONException e)
+//		{
+//			if (e.getMessage() == null)
+//        	{
+//        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller addSpot : JSONException");
+//        	}
+//        	else
+//        	{
+//        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller addSpot : " + e.getMessage());
+//			}
+//		}
+//		return planGenerator.addSpot(spot);
+//	}
 	
 	int planDays = 3;
-	public void setPlanDays(int days)
-	{
-		planDays = days;
-		planGenerator.setPlanDays(days);
-	}
+//	public void setPlanDays(int days)
+//	{
+//		planDays = days;
+//		planGenerator.setPlanDays(days);
+//	}
 	
 	JSONObject hotel = new JSONObject();
-	public boolean setHotel(JSONObject hotel)
-	{
-		boolean ret = false;
-		try
-		{
-			hotel.put("name", 
-					hotel.getJSONObject("attrs").getString("hotelName"));
-			String bpoint = hotel.getJSONObject("attrs").getString("bpoint");
-			String [] values = bpoint.split(",");
-			if (values != null && values.length == 2)
-			{
-				int latitude = (int) (Float.parseFloat(values[0]) * 1000000);
-				int longitude = (int) (Float.parseFloat(values[1]) * 1000000);
-				hotel.put("latitude", latitude);
-				hotel.put("longitude", longitude);
-				hotel.put("city", hotel.getString("cityName"));
-				this.hotel = hotel;
-				ret = planGenerator.setHotel(hotel);
-			}
-		}
-		catch (JSONException e)
-		{
-			if (e.getMessage() == null)
-        	{
-        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : JSONException");
-        	}
-        	else
-        	{
-        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : " + e.getMessage());
-			}
-			
-			e.printStackTrace();
-		}
-		catch (NumberFormatException e)
-		{
-			if (e.getMessage() == null)
-        	{
-        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : JSONException");
-        	}
-        	else
-        	{
-        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : " + e.getMessage());
-			}
-			
-			e.printStackTrace();
-		}
-		
-		return ret;
-	}
+//	public boolean setHotel(JSONObject hotel)
+//	{
+//		boolean ret = false;
+//		try
+//		{
+//			hotel.put("name", 
+//					hotel.getJSONObject("attrs").getString("hotelName"));
+//			String bpoint = hotel.getJSONObject("attrs").getString("bpoint");
+//			String [] values = bpoint.split(",");
+//			if (values != null && values.length == 2)
+//			{
+//				int latitude = (int) (Float.parseFloat(values[0]) * 1000000);
+//				int longitude = (int) (Float.parseFloat(values[1]) * 1000000);
+//				hotel.put("latitude", latitude);
+//				hotel.put("longitude", longitude);
+//				hotel.put("city", hotel.getString("cityName"));
+//				this.hotel = hotel;
+//				ret = planGenerator.setHotel(hotel);
+//			}
+//		}
+//		catch (JSONException e)
+//		{
+//			if (e.getMessage() == null)
+//        	{
+//        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : JSONException");
+//        	}
+//        	else
+//        	{
+//        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : " + e.getMessage());
+//			}
+//			
+//			e.printStackTrace();
+//		}
+//		catch (NumberFormatException e)
+//		{
+//			if (e.getMessage() == null)
+//        	{
+//        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : JSONException");
+//        	}
+//        	else
+//        	{
+//        		Log.e(Constant.LOG_LEVEL_ERROR, "Controller setHotel : " + e.getMessage());
+//			}
+//			
+//			e.printStackTrace();
+//		}
+//		
+//		return ret;
+//	}
 	
-	public boolean genPlan()
-	{
-		return planGenerator.genPlan();
-	}
-	
-	public float finishPercentage()
-	{
-		return planGenerator.finishPercentage();
-	}
-	
-	public ArrayList<ArrayList<JSONObject>> getPlan()
-	{
-		return planGenerator.getPlan();
-	}
-	
-	public ArrayList<ArrayList<JSONObject>> getSugPlan()
-	{
-		return planGenerator.getSugPlan();
-	}
-	
-	public ArrayList<HashMap<String, RouteEntry>> getRoutes()
-	{
-		return planGenerator.getRoutes();
-	}
+//	public boolean genPlan()
+//	{
+//		return planGenerator.genPlan();
+//	}
+//	
+//	public float finishPercentage()
+//	{
+//		return planGenerator.finishPercentage();
+//	}
+//	
+//	public ArrayList<ArrayList<JSONObject>> getPlan()
+//	{
+//		return planGenerator.getPlan();
+//	}
+//	
+//	public ArrayList<ArrayList<JSONObject>> getSugPlan()
+//	{
+//		return planGenerator.getSugPlan();
+//	}
+//	
+//	public ArrayList<HashMap<String, RouteEntry>> getRoutes()
+//	{
+//		return planGenerator.getRoutes();
+//	}
 	
 	public String getDayTitle()
 	{
@@ -815,68 +815,68 @@ public class Controller
 		viewDayIndex = day;
 	}
 	
-	public ArrayList<JSONObject> getOneDayPlan()
-	{
-		ArrayList<ArrayList<JSONObject>> plans = planGenerator.getPlan();
-		if ((0 <= viewDayIndex) && (viewDayIndex < plans.size()))
-		{
-			return plans.get(viewDayIndex);
-		}
-		else
-		{
-			return null;
-		}
-	}
-	
-	public ArrayList<JSONObject> getOneDaySugPlan()
-	{
-		ArrayList<ArrayList<JSONObject>> plans = planGenerator.getSugPlan();
-		if ((0 <= viewDayIndex) && (viewDayIndex < plans.size()))
-		{
-			return plans.get(viewDayIndex);
-		}
-		else
-		{
-			return null;
-		}
-	}	
-	
-	public HashMap<String, RouteEntry> getOneDayRoutes()
-	{
-		ArrayList<HashMap<String, RouteEntry>> routes = planGenerator.getRoutes();
-		if ((0 <= viewDayIndex) && (viewDayIndex < routes.size()))
-		{
-			return routes.get(viewDayIndex);
-		}
-		else
-		{
-			return null;
-		}
-	}
-	
-	public void showPlan()
-	{
-		ArrayList<ArrayList<JSONObject>> plan = planGenerator.getSugPlan();
-		
-		for (int i = 0; i < plan.size(); i ++)
-		{
-			ArrayList<JSONObject> onedayPlan = plan.get(i);
-			for (int j = 0; j < onedayPlan.size(); j ++)
-			{
-				System.out.println(onedayPlan.get(j).toString());
-			}
-		}
-		
-		ArrayList<HashMap<String, RouteEntry>> routes = getRoutes();
-		for (int i = 0; i < routes.size(); i ++)
-		{
-			HashMap<String, RouteEntry> onedayRoute = routes.get(i);
-			for (String id : onedayRoute.keySet())
-			{
-				System.out.println(onedayRoute.get(id).toString());
-			}
-		}
-	}
+//	public ArrayList<JSONObject> getOneDayPlan()
+//	{
+//		ArrayList<ArrayList<JSONObject>> plans = planGenerator.getPlan();
+//		if ((0 <= viewDayIndex) && (viewDayIndex < plans.size()))
+//		{
+//			return plans.get(viewDayIndex);
+//		}
+//		else
+//		{
+//			return null;
+//		}
+//	}
+//	
+//	public ArrayList<JSONObject> getOneDaySugPlan()
+//	{
+//		ArrayList<ArrayList<JSONObject>> plans = planGenerator.getSugPlan();
+//		if ((0 <= viewDayIndex) && (viewDayIndex < plans.size()))
+//		{
+//			return plans.get(viewDayIndex);
+//		}
+//		else
+//		{
+//			return null;
+//		}
+//	}	
+//	
+//	public HashMap<String, RouteEntry> getOneDayRoutes()
+//	{
+//		ArrayList<HashMap<String, RouteEntry>> routes = planGenerator.getRoutes();
+//		if ((0 <= viewDayIndex) && (viewDayIndex < routes.size()))
+//		{
+//			return routes.get(viewDayIndex);
+//		}
+//		else
+//		{
+//			return null;
+//		}
+//	}
+//	
+//	public void showPlan()
+//	{
+//		ArrayList<ArrayList<JSONObject>> plan = planGenerator.getSugPlan();
+//		
+//		for (int i = 0; i < plan.size(); i ++)
+//		{
+//			ArrayList<JSONObject> onedayPlan = plan.get(i);
+//			for (int j = 0; j < onedayPlan.size(); j ++)
+//			{
+//				System.out.println(onedayPlan.get(j).toString());
+//			}
+//		}
+//		
+//		ArrayList<HashMap<String, RouteEntry>> routes = getRoutes();
+//		for (int i = 0; i < routes.size(); i ++)
+//		{
+//			HashMap<String, RouteEntry> onedayRoute = routes.get(i);
+//			for (String id : onedayRoute.keySet())
+//			{
+//				System.out.println(onedayRoute.get(id).toString());
+//			}
+//		}
+//	}
 		
 	DBManager dbManager;
 	public void setDBManager(DBManager dbManager)
@@ -924,20 +924,20 @@ public class Controller
 	
 	LocationClient locationClient;
 	LocationModule locationModule;
-	public void setLocationClient(LocationClient client)
-	{
-		locationClient = client;
-		System.out.println("ok 2");
-		locationModule = new LocationModule(locationClient);
-		System.out.println("ok 10");
-	}
-	
-	public BDLocation getLocation()
-	{
-		System.out.println("locationModule null ? " + (locationModule == null));
-		return locationModule.getLocation();
-	}
-		
+//	public void setLocationClient(LocationClient client)
+//	{
+//		locationClient = client;
+//		System.out.println("ok 2");
+//		locationModule = new LocationModule(locationClient);
+//		System.out.println("ok 10");
+//	}
+//	
+//	public BDLocation getLocation()
+//	{
+//		System.out.println("locationModule null ? " + (locationModule == null));
+//		return locationModule.getLocation();
+//	}
+//		
 	@SuppressLint("HandlerLeak")
 	Handler controllerHandler = new Handler()
 	{

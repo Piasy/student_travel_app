@@ -12,5 +12,5 @@ public class Setting
 	//demo
 //	public static final String APPKEY = "HcteAFRYauCg5gTqtGTMwFSE";
 	//develop
-	public static final String APPKEY = "0SCsxDs3yNrV9e7wkIHxTgpL";
+	public static final String APPKEY = "RSfsdMBuTjoGRbtqwDyGygis";
 }

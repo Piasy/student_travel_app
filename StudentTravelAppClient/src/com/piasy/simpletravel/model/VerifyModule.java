@@ -75,8 +75,10 @@ public class VerifyModule
 				long timestamp = System.currentTimeMillis();
 				params.add(new BasicNameValuePair("timestamp", Long.toString(timestamp)));
 				params.add(new BasicNameValuePair("password", 
-						Util.getSHA1Value(Util.getSHA1Value(password) + Long.toHexString(timestamp)))); 
+						Util.getSHA1Value(password + Long.toHexString(timestamp)))); 
 				post.setEntity(new UrlEncodedFormEntity(params, "utf-8"));
+				System.out
+						.println("verify send: " + Util.getSHA1Value(Util.getSHA1Value(password) + Long.toHexString(timestamp)));
 				System.out.println("ok 04");
 				HttpResponse response = client.execute(host, post);
 				System.out.println("ok 05");

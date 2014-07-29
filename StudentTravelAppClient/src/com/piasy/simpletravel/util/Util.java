@@ -32,7 +32,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 import android.view.View;
 
-import com.baidu.mapapi.search.MKTransitRoutePlan;
+//import com.baidu.mapapi.search.MKTransitRoutePlan;
 import com.piasy.simpletravel.model.Constant;
 
 public class Util
@@ -194,103 +194,103 @@ public class Util
 		return encryptStr;
 	}
 	
-	/**
-	 * to json object format string
-	 * {
-	 * "time" : time,	//int
-	 * "desc" : desc	//string
-	 * }
-	 * */
-	public static JSONObject routePlan2Json(MKTransitRoutePlan route)
-	{
-		JSONObject info = new JSONObject();
-		
-		try
-		{
-			if (route == null)
-			{
-				info.put("type", Constant.LISTVIEW_ITEM_TRAFFIC);
-				info.put("time", 0);
-				info.put("overall", "距离很近，建议直接步行");
-				info.put("desc", new JSONArray());
-				return info;
-			}
-			
-			ArrayList<JSONObject> desc = new ArrayList<JSONObject>();
-			for (int i = 0; i < route.getNumLines(); i ++)
-			{
-				JSONObject item = new JSONObject();
-				item.put("type", "bus");
-				item.put("desc", route.getLine(i).getTip());
-				desc.add(item);
-			}
-			
-			int offset = 1;
-			int index = -1;
-			for (int i = 0; i < route.getNumRoute(); i ++)
-			{
-				JSONObject item = new JSONObject();
-				item.put("type", "walk");
-				item.put("desc", route.getRoute(i).getTip());
-				desc.add(route.getRoute(i).getIndex() + offset, 
-						item);
-				
-				if (route.getRoute(i).getIndex() == index)
-				{
-					offset ++;
-				}
-				
-				index = route.getRoute(i).getIndex() + 1;
-			}
-		
-			info.put("type", Constant.LISTVIEW_ITEM_TRAFFIC);
-			int time = route.getTime();
-			info.put("time", time);
-			String overall = route.getContent();
-			String [] lines = overall.split("_");
-			overall = "";
-			for (int i = 0; i < lines.length; i ++)
-			{
-				overall += lines[i];
-				if (i < lines.length - 1)
-				{
-					overall += "→";
-				}
-			}
-			overall += "，约";
-			int hour = time / 3600, minute;
-			if (0 < hour)
-			{
-				minute = (time % 3600) / 60;
-				overall += hour + "小时";
-				if (minute != 0)
-				{
-					overall += minute + "分钟";
-				}
-			}
-			else
-			{
-				minute = time / 60;
-				overall += minute + "分钟";
-			}
-			info.put("overall", overall);
-			JSONArray descArray = new JSONArray(desc);
-			info.put("desc", descArray);
-		}
-		catch (JSONException e)
-		{
-			if (e.getMessage() == null)
-        	{
-				Log.e(Constant.LOG_LEVEL_ERROR, "Util routePlan2String : JSONException");
-        	}
-        	else
-        	{
-        		Log.e(Constant.LOG_LEVEL_ERROR, "Util routePlan2String : " + e.getMessage());
-			}
-		}
-		
-		return info;
-	}
+//	/**
+//	 * to json object format string
+//	 * {
+//	 * "time" : time,	//int
+//	 * "desc" : desc	//string
+//	 * }
+//	 * */
+//	public static JSONObject routePlan2Json(MKTransitRoutePlan route)
+//	{
+//		JSONObject info = new JSONObject();
+//		
+//		try
+//		{
+//			if (route == null)
+//			{
+//				info.put("type", Constant.LISTVIEW_ITEM_TRAFFIC);
+//				info.put("time", 0);
+//				info.put("overall", "距离很近，建议直接步行");
+//				info.put("desc", new JSONArray());
+//				return info;
+//			}
+//			
+//			ArrayList<JSONObject> desc = new ArrayList<JSONObject>();
+//			for (int i = 0; i < route.getNumLines(); i ++)
+//			{
+//				JSONObject item = new JSONObject();
+//				item.put("type", "bus");
+//				item.put("desc", route.getLine(i).getTip());
+//				desc.add(item);
+//			}
+//			
+//			int offset = 1;
+//			int index = -1;
+//			for (int i = 0; i < route.getNumRoute(); i ++)
+//			{
+//				JSONObject item = new JSONObject();
+//				item.put("type", "walk");
+//				item.put("desc", route.getRoute(i).getTip());
+//				desc.add(route.getRoute(i).getIndex() + offset, 
+//						item);
+//				
+//				if (route.getRoute(i).getIndex() == index)
+//				{
+//					offset ++;
+//				}
+//				
+//				index = route.getRoute(i).getIndex() + 1;
+//			}
+//		
+//			info.put("type", Constant.LISTVIEW_ITEM_TRAFFIC);
+//			int time = route.getTime();
+//			info.put("time", time);
+//			String overall = route.getContent();
+//			String [] lines = overall.split("_");
+//			overall = "";
+//			for (int i = 0; i < lines.length; i ++)
+//			{
+//				overall += lines[i];
+//				if (i < lines.length - 1)
+//				{
+//					overall += "→";
+//				}
+//			}
+//			overall += "，约";
+//			int hour = time / 3600, minute;
+//			if (0 < hour)
+//			{
+//				minute = (time % 3600) / 60;
+//				overall += hour + "小时";
+//				if (minute != 0)
+//				{
+//					overall += minute + "分钟";
+//				}
+//			}
+//			else
+//			{
+//				minute = time / 60;
+//				overall += minute + "分钟";
+//			}
+//			info.put("overall", overall);
+//			JSONArray descArray = new JSONArray(desc);
+//			info.put("desc", descArray);
+//		}
+//		catch (JSONException e)
+//		{
+//			if (e.getMessage() == null)
+//        	{
+//				Log.e(Constant.LOG_LEVEL_ERROR, "Util routePlan2String : JSONException");
+//        	}
+//        	else
+//        	{
+//        		Log.e(Constant.LOG_LEVEL_ERROR, "Util routePlan2String : " + e.getMessage());
+//			}
+//		}
+//		
+//		return info;
+//	}
 	
 	public static int dip2px(Context context, float dipValue) 
 	{

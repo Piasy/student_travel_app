@@ -76,14 +76,14 @@ public class HotelDetailActivity extends Activity
 				@Override
 				public void onClick(View v)
 				{
-					if (myController.setHotel(hotel))
-					{
-						Controller.makeToast("添加成功");
-					}
-					else
-					{
-						Controller.makeToast("添加失败");
-					}
+//					if (myController.setHotel(hotel))
+//					{
+//						Controller.makeToast("添加成功");
+//					}
+//					else
+//					{
+//						Controller.makeToast("添加失败");
+//					}
 				}
 			});
 			

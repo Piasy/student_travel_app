@@ -49,7 +49,7 @@ public class AllPlanActivity extends Activity
 		
 		myController = Controller.getController();
 		myController.setActivityHandler(handler);
-		myController.setPlanDays(2);
+//		myController.setPlanDays(2);
 				
 		travelInfoButton = (Button) findViewById(R.id.travelInfoInMain);
 		planTableButton = (Button) findViewById(R.id.planTableInMain);
@@ -139,18 +139,18 @@ public class AllPlanActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-				myController.searchAroundSpots();
-				BDLocation location = myController.getLocation();
-				if (location == null || myController.getAroundSpots().size() == 0)
-				{
-					Controller.makeToast("正在努力定位中，先看看别的吧~");
-				}
-				else
-				{
-					myController.viewMap(Constant.VIEW_POS_MAP);
-					Intent intent = new Intent(AllPlanActivity.this, MapViewActivity.class);
-					startActivity(intent);
-				}
+//				myController.searchAroundSpots();
+//				BDLocation location = myController.getLocation();
+//				if (location == null || myController.getAroundSpots().size() == 0)
+//				{
+//					Controller.makeToast("正在努力定位中，先看看别的吧~");
+//				}
+//				else
+//				{
+//					myController.viewMap(Constant.VIEW_POS_MAP);
+//					Intent intent = new Intent(AllPlanActivity.this, MapViewActivity.class);
+//					startActivity(intent);
+//				}
 			}
 		});
 		
@@ -219,59 +219,59 @@ public class AllPlanActivity extends Activity
 	
 	protected void updateUI()
 	{
-		ArrayList<ArrayList<JSONObject>> allPlans = myController.getPlan();
-//		System.out.println("ok2");
-//		System.out.println("" + (allPlans == null));
-		if (allPlans.size() != 0)
-		{
-//			JSONObject date = Util.date2Json(myController.getPlanDate());
-			adapter.clear();
-			for (int i = 0; i < allPlans.size(); i ++)
-			{
-				JSONObject plan = new JSONObject();
-				try
-				{
-					plan.put("type", Constant.LISTVIEW_ITEM_PLAN);
-					plan.put("status", Constant.PLAN_STATUS_PLAN);
-					String spots = "";
-					for (int j = 0; j < allPlans.get(i).size(); j ++)
-					{
-						spots += allPlans.get(i).get(j).getString("name");
-						
-						if (j < allPlans.get(i).size() - 1)
-						{
-							spots += "，";
-						}
-					}
-					
-					Calendar date = myController.getPlanDate();
-					plan.put("spots", spots);
-					plan.put("year", date.get(Calendar.YEAR));
-					plan.put("month", date.get(Calendar.MONTH));
-					plan.put("day", date.get(Calendar.DAY_OF_MONTH) + i);
-					plan.put("weekday", (date.get(Calendar.DAY_OF_WEEK) + i) % 7);
-					
-					adapter.addItem(plan);
-				}
-				catch (JSONException e)
-				{
-					if (e.getMessage() == null)
-		        	{
-						Log.e(Constant.LOG_LEVEL_ERROR, "AllPlanActivity updateUI : JSONException");
-		        	}
-		        	else
-		        	{
-		        		Log.e(Constant.LOG_LEVEL_ERROR, "AllPlanActivity updateUI : " + e.getMessage());
-					}
-				}
-			}
-			
-			adapter.notifyDataSetChanged();
-		}
-		else
-		{
-			Controller.makeToast("行程表还是空的，赶快创建一个吧~");
-		}
+//		ArrayList<ArrayList<JSONObject>> allPlans = myController.getPlan();
+////		System.out.println("ok2");
+////		System.out.println("" + (allPlans == null));
+//		if (allPlans.size() != 0)
+//		{
+////			JSONObject date = Util.date2Json(myController.getPlanDate());
+//			adapter.clear();
+//			for (int i = 0; i < allPlans.size(); i ++)
+//			{
+//				JSONObject plan = new JSONObject();
+//				try
+//				{
+//					plan.put("type", Constant.LISTVIEW_ITEM_PLAN);
+//					plan.put("status", Constant.PLAN_STATUS_PLAN);
+//					String spots = "";
+//					for (int j = 0; j < allPlans.get(i).size(); j ++)
+//					{
+//						spots += allPlans.get(i).get(j).getString("name");
+//						
+//						if (j < allPlans.get(i).size() - 1)
+//						{
+//							spots += "，";
+//						}
+//					}
+//					
+//					Calendar date = myController.getPlanDate();
+//					plan.put("spots", spots);
+//					plan.put("year", date.get(Calendar.YEAR));
+//					plan.put("month", date.get(Calendar.MONTH));
+//					plan.put("day", date.get(Calendar.DAY_OF_MONTH) + i);
+//					plan.put("weekday", (date.get(Calendar.DAY_OF_WEEK) + i) % 7);
+//					
+//					adapter.addItem(plan);
+//				}
+//				catch (JSONException e)
+//				{
+//					if (e.getMessage() == null)
+//		        	{
+//						Log.e(Constant.LOG_LEVEL_ERROR, "AllPlanActivity updateUI : JSONException");
+//		        	}
+//		        	else
+//		        	{
+//		        		Log.e(Constant.LOG_LEVEL_ERROR, "AllPlanActivity updateUI : " + e.getMessage());
+//					}
+//				}
+//			}
+//			
+//			adapter.notifyDataSetChanged();
+//		}
+//		else
+//		{
+//			Controller.makeToast("行程表还是空的，赶快创建一个吧~");
+//		}
 	}
 	
 	@SuppressLint("HandlerLeak")
