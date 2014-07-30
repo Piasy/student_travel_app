@@ -240,19 +240,17 @@ public class Controller
 		aroundSpots = spots;
 	}
 
-//	public void searchAroundSpots()
-//	{
-//		BDLocation location = getLocation();
-//		if (location != null && aroundSpots.length() == 0 
-//				&& !username.equals("") && !token.equals(""))
-//		{
-//			String city = location.getCity();
-//			System.out.println("city0 : " + city);
-//			city = city.substring(0, city.length() - 1);
-//			System.out.println("city1 : " + city);
-//			spotsSeacher.search(username, token, city, Constant.SEARCH_BY_CITY, 0);
-//		}
-//	}
+	public void searchAroundSpots()
+	{
+		BDLocation location = getLocation();
+		if (location != null && aroundSpots.length() == 0 
+				&& !username.equals("") && !token.equals(""))
+		{
+			String city = location.getCity();
+			city = city.substring(0, city.length() - 1);
+			spotsSeacher.search(username, token, city, Constant.SEARCH_BY_CITY, 0);
+		}
+	}
 	
 	public ArrayList<JSONObject> getAroundSpots()
 	{
@@ -303,7 +301,6 @@ public class Controller
 	JSONArray allSpots = new JSONArray();
 	public void setSuccessResult(int type, String info)
 	{
-		Log.d(Constant.LOG_LEVEL_DEBUG, "" + type + " success , info : " + info);
 		try
 		{
 			JSONObject msgInfo = new JSONObject();
@@ -311,7 +308,6 @@ public class Controller
 			{
 			case Constant.SIGNUP:
 				msgInfo.put("type", "signup");
-//				token = info;
 				verify(username, password);
 				break;
 			case Constant.VERIFY:
@@ -922,22 +918,29 @@ public class Controller
 		return spotDetail;
 	}
 	
-	LocationClient locationClient;
-	LocationModule locationModule;
-//	public void setLocationClient(LocationClient client)
-//	{
-//		locationClient = client;
-//		System.out.println("ok 2");
-//		locationModule = new LocationModule(locationClient);
-//		System.out.println("ok 10");
-//	}
-//	
-//	public BDLocation getLocation()
-//	{
-//		System.out.println("locationModule null ? " + (locationModule == null));
-//		return locationModule.getLocation();
-//	}
-//		
+	LocationClient locationClient = null;
+	LocationModule locationModule = null;
+	public void setLocationClient(LocationClient client)
+	{
+		locationClient = client;
+		locationModule = new LocationModule(locationClient);
+	}
+	
+	public LocationClient getLocationClient()
+	{
+		return locationClient;
+	}
+	
+	public BDLocation getLocation()
+	{
+		return locationModule.getLocation();
+	}
+	
+	public void reqLocation()
+	{
+		locationModule.reqLocation();
+	}
+		
 	@SuppressLint("HandlerLeak")
 	Handler controllerHandler = new Handler()
 	{

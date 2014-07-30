@@ -62,7 +62,6 @@ public class VerifyModule
 			requested = true;
 			try
 			{
-				System.out.println("ok 03");
 				BasicHttpParams httpParams = new BasicHttpParams();  
 		        HttpConnectionParams.setConnectionTimeout(httpParams, Constant.HTTPCLIENT_CON_TIMEOUT);  
 		        HttpConnectionParams.setSoTimeout(httpParams, Constant.HTTPCLIENT_READ_TIMEOUT);
@@ -77,20 +76,14 @@ public class VerifyModule
 				params.add(new BasicNameValuePair("password", 
 						Util.getSHA1Value(password + Long.toHexString(timestamp)))); 
 				post.setEntity(new UrlEncodedFormEntity(params, "utf-8"));
-				System.out
-						.println("verify send: " + Util.getSHA1Value(Util.getSHA1Value(password) + Long.toHexString(timestamp)));
-				System.out.println("ok 04");
 				HttpResponse response = client.execute(host, post);
-				System.out.println("ok 05");
 				JSONObject responseInfo = new JSONObject(EntityUtils.toString(response.getEntity(), "UTF-8"));
 				String result = responseInfo.getString("result");
 				if (result.equals("success"))
 				{
 					Controller.getController().setSuccessResult(Constant.VERIFY, responseInfo.getString("token"));
 					Controller.getController().setCommitted(responseInfo.getJSONArray("committed"));
-					System.out.println("ok 06");
 					Controller.getController().setUserInfo(responseInfo.getJSONObject("info"));
-					System.out.println("ok 07");
 					
 					JSONArray recspots = responseInfo.getJSONArray("recspots");
 					for (int i = 0; i < recspots.length(); i ++)
@@ -116,7 +109,6 @@ public class VerifyModule
 						recspots.getJSONObject(i).put("photo", photo.getAbsolutePath());
 					}
 					Controller.getController().setRecSpots(recspots);
-					System.out.println("ok 08");
 				}
 				else if (result.equals("fail"))
 				{
@@ -144,7 +136,6 @@ public class VerifyModule
 				Controller.getController().setFailResult(Constant.VERIFY, "网络出错，请稍后重试");
 			}
 
-			System.out.println("ok !!");
 			requested = false;
 		}
 	};

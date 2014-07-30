@@ -542,7 +542,7 @@ public class DBManager
 			Util.Log(Constant.LOG_LEVEL_ERROR, e.getMessage(), "DBManager getRecSpots");
 		}
     	
-//    	Util.Log(Constant.LOG_LEVEL_DEBUG, ret.toString(), "DBManager getRecSpots");
+    	Util.Log(Constant.LOG_LEVEL_DEBUG, ret.toString(), "DBManager getRecSpots");
     	return ret;
     }
     

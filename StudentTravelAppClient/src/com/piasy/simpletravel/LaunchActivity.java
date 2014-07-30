@@ -9,7 +9,6 @@ import org.json.JSONObject;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.AssetManager;
@@ -25,22 +24,18 @@ import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.baidu.location.LocationClient;
 //import com.baidu.mapapi.BMapManager;
 //import com.baidu.mapapi.MKGeneralListener;
 //import com.baidu.mapapi.map.MKEvent;
 import com.piasy.simpletravel.controller.Controller;
 import com.piasy.simpletravel.dao.DBManager;
 import com.piasy.simpletravel.model.Constant;
-import com.piasy.simpletravel.model.Setting;
 import com.piasy.simpletravel.util.Util;
 
 public class LaunchActivity extends Activity
 {
 //    BMapManager mBMapManager = null;
-    public LocationClient locationClient = null;
     DBManager dbManager;
     Controller myController;
 	EditText usernameEdit, passwordEdit;
@@ -54,15 +49,18 @@ public class LaunchActivity extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		Log.i(Constant.LOG_LEVEL_INFO, "Launch activity oncreate");
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_welcome);
 
     	myController = Controller.getController();
-		if (initEngineManager(getApplicationContext()))
-		{
-			Thread initThread = new Thread(initRunnable);
-			initThread.start();
-		}
+    	Thread initThread = new Thread(initRunnable);
+		initThread.start();
+//		if (initEngineManager(getApplicationContext()))
+//		{
+//			Thread initThread = new Thread(initRunnable);
+//			initThread.start();
+//		}
 	}
 
 
@@ -81,13 +79,8 @@ public class LaunchActivity extends Activity
 
 			    if (Util.init(is))
 			    {
-//			    	myController.getApp().setBMapManager(mBMapManager);
 					DBManager dbManager = new DBManager(getApplicationContext());
 					myController.setDBManager(dbManager);
-//					myController.setBMapManager(mBMapManager);
-					myController.setActivityHandler(handler);
-//					myController.setLocationClient(locationClient);
-					
 					myController.setActivityHandler(handler);
 					
 					SharedPreferences pref = getSharedPreferences(Constant.APP_PREF_NAME, 0);
@@ -134,32 +127,18 @@ public class LaunchActivity extends Activity
 		}
 	};
 	
-	public boolean initEngineManager(Context context) 
-	{
-		boolean ret = false;
-		ret = true;
-//        if (mBMapManager == null) 
-//        {
-//        	mBMapManager = new BMapManager(context);
-//        }
-//        
+//	public boolean initEngineManager(Context context) 
+//	{
+//		boolean ret = false;
+//		
 //        if (locationClient == null)
 //        {
-//        	locationClient = new LocationClient(this);
+////        	locationClient = new LocationClient(this);
 //        }
-//
-//        if (!mBMapManager.init(Setting.APPKEY, new MyGeneralListener())) 
-//        {
-//        	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), 
-//                    "BMapManager  初始化错误!", Toast.LENGTH_LONG).show();
-//        }
-//        else
-//        {
-//			ret = true;
-//		}
-        
-        return ret;
-	}
+//        ret = true;
+//        
+//        return ret;
+//	}
 	
 	// normal exception listener, such as auth error, network error
 //    public static class MyGeneralListener implements MKGeneralListener 
@@ -296,7 +275,6 @@ public class LaunchActivity extends Activity
 	
 	protected void verify()
 	{
-		System.out.println("verify input: " + password);
 		myController.verify(username, password);
 						
 		dialog = new ProgressDialog(LaunchActivity.this);

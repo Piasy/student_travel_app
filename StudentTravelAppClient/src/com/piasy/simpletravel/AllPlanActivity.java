@@ -1,10 +1,6 @@
 package com.piasy.simpletravel;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
@@ -139,18 +135,18 @@ public class AllPlanActivity extends Activity
 			@Override
 			public void onClick(View v)
 			{
-//				myController.searchAroundSpots();
-//				BDLocation location = myController.getLocation();
-//				if (location == null || myController.getAroundSpots().size() == 0)
-//				{
-//					Controller.makeToast("正在努力定位中，先看看别的吧~");
-//				}
-//				else
-//				{
-//					myController.viewMap(Constant.VIEW_POS_MAP);
-//					Intent intent = new Intent(AllPlanActivity.this, MapViewActivity.class);
-//					startActivity(intent);
-//				}
+				BDLocation location = myController.getLocation();
+				if (location == null || myController.getAroundSpots().size() == 0)
+				{
+					Controller.makeToast("正在努力定位中，先看看别的吧~");
+					myController.searchAroundSpots();
+				}
+				else
+				{
+					myController.viewMap(Constant.VIEW_POS_MAP);
+					Intent intent = new Intent(AllPlanActivity.this, MapViewActivity.class);
+					startActivity(intent);
+				}
 			}
 		});
 		
@@ -304,11 +300,8 @@ public class AllPlanActivity extends Activity
 		super.onResume();
 		myController.setActivityHandler(handler);
 
-		System.out.println("AllPlanActivity.onResume() " + myController.exiting());
-		
 		if (myController.exiting())
 		{
-			System.out.println("AllPlanActivity.onResume()");
 			finish();
 		}
 		else
@@ -320,7 +313,6 @@ public class AllPlanActivity extends Activity
 					initUI();
 				}
 				updateUI();
-				System.out.println("ok!");
 			}
 			else
 			{
