@@ -14,6 +14,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
+import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
@@ -907,13 +908,13 @@ public class Controller
 		return app;
 	}
 	
-	JSONObject spotDetail = new JSONObject();
-	public void seeSpotDetail(JSONObject spot)
+	Bundle spotDetail = new Bundle();
+	public void seeSpotDetail(Bundle spot)
 	{
 		spotDetail = spot;
 	}
 	
-	public JSONObject getSpotDetail()
+	public Bundle getSpotDetail()
 	{
 		return spotDetail;
 	}

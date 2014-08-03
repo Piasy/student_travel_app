@@ -35,7 +35,6 @@ import com.piasy.simpletravel.util.Util;
 
 public class LaunchActivity extends Activity
 {
-//    BMapManager mBMapManager = null;
     DBManager dbManager;
     Controller myController;
 	EditText usernameEdit, passwordEdit;
@@ -56,11 +55,6 @@ public class LaunchActivity extends Activity
     	myController = Controller.getController();
     	Thread initThread = new Thread(initRunnable);
 		initThread.start();
-//		if (initEngineManager(getApplicationContext()))
-//		{
-//			Thread initThread = new Thread(initRunnable);
-//			initThread.start();
-//		}
 	}
 
 
@@ -127,54 +121,6 @@ public class LaunchActivity extends Activity
 		}
 	};
 	
-//	public boolean initEngineManager(Context context) 
-//	{
-//		boolean ret = false;
-//		
-//        if (locationClient == null)
-//        {
-////        	locationClient = new LocationClient(this);
-//        }
-//        ret = true;
-//        
-//        return ret;
-//	}
-	
-	// normal exception listener, such as auth error, network error
-//    public static class MyGeneralListener implements MKGeneralListener 
-//    {
-//        
-//        @Override
-//        public void onGetNetworkState(int iError) 
-//        {
-//            if (iError == MKEvent.ERROR_NETWORK_CONNECT) 
-//            {
-//            	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), "你的网络出错啦！",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//            else if (iError == MKEvent.ERROR_NETWORK_DATA) 
-//            {
-//            	Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), "输入正确的检索条件！",
-//                        Toast.LENGTH_LONG).show();
-//            }
-//            // ...
-//        }
-//
-//        @Override
-//        public void onGetPermissionState(int iError)
-//        {
-//            if (iError ==  MKEvent.ERROR_PERMISSION_DENIED) 
-//            {
-//                //auth Key error
-//                Toast.makeText(SimpleTravelApplication.getInstance().getApplicationContext(), 
-//                        "授权错误，请从合法途径获取本软件！", Toast.LENGTH_LONG).show();
-//                SimpleTravelApplication.getInstance().m_bKeyRight = false;
-//            }
-//        }
-//    }
-	
-	
-	
 	ProgressDialog dialog = null;
 	protected void initUI()
 	{
@@ -195,7 +141,7 @@ public class LaunchActivity extends Activity
 			
 			if (remember)
 			{
-				passwordEdit.setText(password);
+				passwordEdit.setText("123456");
 			}
 		}
 		

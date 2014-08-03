@@ -2,6 +2,8 @@ package com.piasy.simpletravel;
 
 import java.util.ArrayList;
 
+import com.piasy.simpletravel.model.Constant;
+
 import android.content.Context;
 import android.graphics.drawable.BitmapDrawable;
 import android.view.LayoutInflater;
@@ -20,22 +22,34 @@ public class PopMenu
 	private Context context;
 	private PopupWindow popupWindow;
 	private ListView listView;
+	PopAdapter adapter = new PopAdapter();
+	int viewType;
 
-	public PopMenu(Context context) 
+	public PopMenu(Context context, int viewType) 
 	{
 		this.context = context;
+		this.viewType = viewType;
 		
-		itemList = new ArrayList<String>(2);
+		itemList = new ArrayList<String>();
 
 		View view = LayoutInflater.from(context)
 				.inflate(R.layout.popmenu, null);
 
 		listView = (ListView) view.findViewById(R.id.viewTypeListView);
-		listView.setAdapter(new PopAdapter());
+		listView.setAdapter(adapter);
 		listView.setFocusableInTouchMode(true);
 		listView.setFocusable(true);
 
-		popupWindow = new PopupWindow(view, 120, LayoutParams.WRAP_CONTENT);
+		switch (viewType)
+		{
+		case Constant.POPUP_VIEW_INMAP:
+			popupWindow = new PopupWindow(view, LayoutParams.FILL_PARENT, LayoutParams.WRAP_CONTENT);
+			break;
+		case Constant.POPUP_VIEW_INACTIVITY:
+			popupWindow = new PopupWindow(view, 120, LayoutParams.WRAP_CONTENT);
+		default:
+			break;
+		}
 
 		// 这个是为了点击“返回Back”也能使其消失，并且并不会影响你的背景（很神奇的）
 		popupWindow.setBackgroundDrawable(new BitmapDrawable());
@@ -47,6 +61,12 @@ public class PopMenu
 		listView.setOnItemClickListener(listener);
 	}
 
+	public void clearItems()
+	{
+		itemList.clear();
+		adapter.notifyDataSetChanged();
+	}
+	
 	// 批量添加菜单项
 	public void addItems(String[] items) 
 	{
@@ -54,18 +74,29 @@ public class PopMenu
 		{
 			itemList.add(s);
 		}
+		adapter.notifyDataSetChanged();
 	}
 
 	// 单个添加菜单项
 	public void addItem(String item) 
 	{
 		itemList.add(item);
+		adapter.notifyDataSetChanged();
 	}
 
 	// 下拉式 弹出 pop菜单 parent 右下角
 	public void showAsDropDown(View parent)
 	{
-		popupWindow.showAsDropDown(parent, 0, 5);
+		switch (viewType)
+		{
+		case Constant.POPUP_VIEW_INMAP:
+			popupWindow.showAsDropDown(parent, 0, 0);
+			break;
+		case Constant.POPUP_VIEW_INACTIVITY:
+			popupWindow.showAsDropDown(parent, 0, 5);
+		default:
+			break;
+		}
 
 		// 使其聚集
 		popupWindow.setFocusable(true);

@@ -7,6 +7,7 @@ import org.json.JSONObject;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -18,6 +19,8 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 
 import com.baidu.location.BDLocation;
 import com.baidu.mapapi.map.BaiduMap;
@@ -44,6 +47,8 @@ public class MapViewActivity extends Activity
 	BaiduMap mBaiduMap;
 	BitmapDescriptor mCurrentMarker;
 	boolean isFirstLoc = true;
+	PopMenu popMenu = null;
+	Marker curSpot = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -59,6 +64,32 @@ public class MapViewActivity extends Activity
 		mBaiduMap.setMyLocationEnabled(true);
 		mBaiduMap.setMyLocationConfigeration(new MyLocationConfigeration(
 				LocationMode.NORMAL, true, null));
+		
+		popMenu = new PopMenu(this, Constant.POPUP_VIEW_INMAP);
+		popMenu.setOnItemClickListener(new OnItemClickListener()
+		{
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id)
+			{
+				popMenu.dismiss();
+				if (curSpot != null)
+				{
+					switch (position)
+					{
+					case 0:
+						break;
+					case 1:
+						myController.seeSpotDetail(curSpot.getExtraInfo());
+						Intent spotdetailIntent = new Intent(MapViewActivity.this, SpotDetailActivity.class);
+						startActivity(spotdetailIntent);
+						break;
+					default:
+						break;
+					}
+				}
+			}
+		});
 		
 		mBaiduMap.setOnMapLoadedCallback(new BaiduMap.OnMapLoadedCallback()
 		{
@@ -87,40 +118,20 @@ public class MapViewActivity extends Activity
 			@Override
 			public boolean onMarkerClick(Marker marker)
 			{
-				Controller.makeToast(marker.getTitle());
+//				Controller.makeToast(marker.getTitle());
 				Bundle desc = marker.getExtraInfo();
 				LatLng pos = new LatLng(desc.getDouble("latitude"), desc.getDouble("longitude"));
 				MapStatusUpdate uc = MapStatusUpdateFactory.newLatLng(pos);
 				mBaiduMap.animateMapStatus(uc);
+				
+				popMenu.clearItems();
+				String [] items = {marker.getTitle(), "详情"};
+				popMenu.addItems(items);
+				curSpot = marker;
+				popMenu.showAsDropDown(findViewById(R.id.spotDetailOptions));
 				return false;
 			}
 		});
-		
-
-//		map.regMapTouchListner(new MKMapTouchListener()
-//		{
-//			@Override
-//			public void onMapClick(GeoPoint point)
-//			{
-//			  if ( pop != null )
-//			  {
-//				  pop.hidePop();
-//			  }
-//			}
-//
-//			@Override
-//			public void onMapDoubleClick(GeoPoint point) 
-//			{
-//				
-//			}
-//
-//			@Override
-//			public void onMapLongClick(GeoPoint point) 
-//			{
-//				
-//			}
-//		});
-		
 	}
 	
 
@@ -222,78 +233,6 @@ public class MapViewActivity extends Activity
 				}
 			}
 		}
-	}
-	
-	View viewCache = null;
-	protected void createPaopao()
-	{
-//		pop = new PopupOverlay(map, new PopupClickListener() 
-//		{                  
-//	        @Override  
-//	        public void onClickedPopup(int index) 
-//	        {  
-//	        	switch (index)
-//				{
-//				case 0:
-//					System.out.println("click 0");
-//					synchronized (planedSpots)
-//					{
-//						System.out.println(curDetailNum + " -- " + planedSpots.size());
-//						if (0 <= curDetailNum && curDetailNum < planedSpots.size())
-//						{
-//							try
-//							{
-//								int detailType = planedSpots.get(curDetailNum).getInt("type");
-//								Intent intent;
-//								switch (detailType)
-//								{
-//								case Constant.LISTVIEW_ITEM_HOTEL:
-//								case Constant.LISTVIEW_ITEM_HOTEL_SEARCH:
-//									myController.seeHotelDetail(planedSpots.get(curDetailNum));
-//									intent = new Intent(MapViewActivity.this, HotelDetailActivity.class);
-//									startActivity(intent);
-//									break;
-//								case Constant.LISTVIEW_ITEM_SPOT:
-//								case Constant.LISTVIEW_ITEM_SPOT_SEARCH:
-//									myController.seeSpotDetail(planedSpots.get(curDetailNum));
-//									intent = new Intent(MapViewActivity.this, SpotDetailActivity.class);
-//									startActivity(intent);
-//									break;
-//								default:
-//									break;
-//								}
-//							}
-//							catch (JSONException e)
-//							{
-//								e.printStackTrace();
-//							}
-//						}
-//					}
-//					break;
-//				case 1:
-//					System.out.println("click 1");
-//					break;
-//				case 2:
-//					System.out.println("click 2");
-//					break;
-//				default:
-//					break;
-//				}
-//	        }  
-//		});
-//		
-//		viewCache = getLayoutInflater().inflate(R.layout.custom_text_view, null);
-//		popupText = (TextView) viewCache.findViewById(R.id.textcache);
-//		popupText.setOnClickListener(new View.OnClickListener()
-//		{
-//			
-//			@Override
-//			public void onClick(View v)
-//			{
-//				System.out
-//						.println("click pop");
-//			}
-//		});
 	}
 	
 	protected Bitmap writeOnDrawable(int drawableId, int num)
@@ -471,50 +410,4 @@ public class MapViewActivity extends Activity
 			Log.d(Constant.LOG_LEVEL_DEBUG, "get info at launch activity : " + (String)msg.obj);
 		}
 	};
-	
-//	private PopupOverlay   pop  = null;//弹出泡泡图层，浏览节点时使用
-//	private TextView  popupText = null;//泡泡view
-//	class LocalLocationOverlay extends MyLocationOverlay
-//	{
-//
-//		public LocalLocationOverlay(MapView arg0)
-//		{
-//			super(arg0);
-//		}
-//		
-//		@Override
-//  		protected boolean dispatchTap() 
-//  		{
-//  			popupText.setBackgroundResource(R.drawable.popup);
-//			popupText.setText("当前位置");
-//			mapController.animateTo(new GeoPoint((int)(locData.latitude * 1E6), (int)(locData.longitude * 1E6)));
-//			pop.showPopup(Util.getBitmapFromView(popupText),
-//					new GeoPoint((int)(locData.latitude * 1e6), (int)(locData.longitude * 1e6)),
-//					8);
-//  			return true;
-//  		}
-//	}
-//	
-//	OverlayItem mCurItem;
-//	int curDetailNum = -1;
-//	@SuppressWarnings("rawtypes")
-//	class SpotsOverlay extends ItemizedOverlay
-//	{
-//
-//		public SpotsOverlay(Drawable arg0, MapView arg1)
-//		{
-//			super(arg0, arg1);
-//		}
-//		
-//		@Override
-//		public boolean onTap(int index)
-//		{
-//			curDetailNum = index;
-//			mCurItem = getItem(index);
-//			popupText.setText(mCurItem.getTitle());
-//			mapController.animateTo(mCurItem.getPoint());
-//			pop.showPopup(Util.getBitmapFromView(popupText), mCurItem.getPoint(), 48);
-//			return true;
-//		}
-//	}
 }

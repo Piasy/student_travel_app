@@ -83,7 +83,7 @@ public class SearchActivity extends Activity
 		byPrice = (Button) findViewById(R.id.sortByPrice);
 		byEval = (Button) findViewById(R.id.sortByEval);
 		
-		popMenu = new PopMenu(this);
+		popMenu = new PopMenu(this, Constant.POPUP_VIEW_INACTIVITY);
 		popMenu.addItems(types);
 		popMenu.setOnItemClickListener(new OnItemClickListener()
 		{
@@ -295,7 +295,7 @@ public class SearchActivity extends Activity
 				}
 				else if (adapter.getItemType(position) == Constant.LISTVIEW_ITEM_SPOT_SEARCH)
 				{
-					myController.seeSpotDetail((JSONObject) adapter.getItem(position));
+//					myController.seeSpotDetail((JSONObject) adapter.getItem(position));
 					
 					Intent spotDetailInfoIntent = new Intent(SearchActivity.this, SpotDetailActivity.class);
 					startActivity(spotDetailInfoIntent);

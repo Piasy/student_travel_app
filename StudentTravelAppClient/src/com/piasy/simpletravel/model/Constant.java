@@ -67,4 +67,7 @@ public class Constant
 	public static final long VERIFY_TIME_OUT = 5 * 1000;
 	
 	public static final int ZOOM_LEVEL3_WIDTH = 128000000;
+	
+	public static final int POPUP_VIEW_INMAP = 1;
+	public static final int POPUP_VIEW_INACTIVITY = 2;
 }
